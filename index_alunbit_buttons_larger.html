@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title><span class="gradient">ALUNBIT</span> — Клятва</title>
+  <style>html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      font-family: 'Courier New', monospace;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Фоновое изображение (звёзды или любой другой фон) */
+    #background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('your-background.png') center/cover no-repeat;
+      z-index: -2;
+    }
+
+    /* Логотип, встроенный в фон */
+    .logo-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.06;
+      width: 300px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, #ff00cc, #3333ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+    }
+
+    .step {
+      display: none;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 10px 20px;
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: white;
+      color: black;
+    }
+
+    #siteContent {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 40px;
+      height: 100vh;
+      overflow-y: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cult-block {
+      max-width: 600px;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .visible {
+      opacity: 1;
+    }
+
+    #block3 .animated-line {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    #block3.visible .animated-line {
+      opacity: 1;
+    }
+@media screen and (max-width: 768px) {
+  #joinCult .button-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  #joinCult button {
+    width: 160px !important;
+    font-size: 18px !important;
+  }
+}
+</style>
+</head>
+<body>
+
+  <!-- Фон -->
+  <div id="background">
+    <!-- Логотип (используй кириллицу, если файл так называется) -->
+    <img class="logo-bg" src="image/лого.png" alt="<span class="gradient">ALUNBIT</span> Logo">
+  </div>
+
+  <audio id="cultSong" src="https://files.catbox.moe/5whgxp.mp3" preload="auto"></audio>
+
+  <div id="step1" class="step" style="display: flex;">
+    <h1><span class="gradient">ПРИМИ КЛЯТВУ МЕМ-ВОИНА</span></h1>
+    <button onclick="showStep2()">▶</button>
+  </div>
+
+  <div id="step2" class="step">
+    <p style="font-size: 28px;"><span class="gradient">Ты</span> уверен, что готов?</p>
+    <button onclick="showStep3()">Да</button>
+    <button onclick="closeSite()">Нет</button>
+  </div>
+
+  <div id="step3" class="step">
+    <p><span class="gradient" style="font-size: 36px;">Обратного пути не будет.</span></p>
+    <div id="oathText" style="margin-top: 20px; display: none; font-size: 28px;">
+      <p>Я клянусь хохотать, а не плакать.<br>
+         Я клянусь ставить <span class="gradient">мем</span> выше анализа.<br>
+         Я не инвестирую — я заражаю.<br>
+         Я есть вирус. Я — <span class="gradient"><span class="gradient">ALUNBIT</span></span>.</p>
+    </div>
+    <button style="display:none;" id="readyBtn" onclick="showContent()">Я готов</button>
+  </div>
+
+  <div id="siteContent" style="display: none; flex-direction: column; gap: 40px; padding: 40px;">
+    <section class="block">
+      <h2><span class="gradient">What is <span class="gradient">ALUNBIT</span>?</span></h2>
+      <p>Это не просто токен. Это революция.<br>
+      <span class="gradient">Мы</span> устали от скучных фейсов<br>
+      Торгуйте тем, что важно.<br>
+      Стань правителем Хауса.</p>
+    </section>
+    
+    <section class="block">
+      <h2><span class="gradient">CHALLENGE Durov</span></h2>
+      <p><strong>Д.</strong> Деньги — это <span class="gradient">мем</span>, а не система.<br>
+         <strong>У.</strong> Умные молчат, пока <span class="gradient">мы</span> ржём.<br>
+         <strong>Р.</strong> Рынок боится тех, кто смеётся.<br>
+         <strong>О.</strong> Обычные в очереди, <span class="gradient">мы</span> в хаосе.<br>
+         <strong>В.</strong> Начнём с мемов, а кончим троном.</p>
+    </section>
+    
+    <section class="block">
+      <h2><span class="gradient"><span class="gradient">ALUNBIT</span> ≠ NOT A PROJECT</span></h2>
+      <p>— <span class="gradient">Мы</span> не проект. <span class="gradient">Мы</span> <span class="gradient"><span class="gradient">отказ</span></span><br>
+         — <span class="gradient">Мы</span> не проект. <span class="gradient">Мы</span> <span class="gradient"><span class="gradient">сопротивление</span></span><br>
+         — <span class="gradient">Мы</span> не проект. <span class="gradient">Мы</span> <span class="gradient">голос</span><br>
+         — <span class="gradient">Мы</span> не команда. <span class="gradient">Мы</span> — <span class="gradient"><span class="gradient">культ</span></span><br>
+         — <span class="gradient">Мы</span> не продаём. <span class="gradient">Мы</span> <span class="gradient"><span class="gradient">заражаем</span></span><br>
+         — <span class="gradient">Мы</span> не объясняем. <span class="gradient">Мы</span> <span class="gradient"><span class="gradient">пульсируем</span></span><br>
+         — <span class="gradient">Мы</span> не обещаем. <span class="gradient">Мы</span> <span class="gradient"><span class="gradient">наступаем</span></span><br>
+         — <span class="gradient">Мы</span> не ждём одобрения!<br>
+         — <span class="gradient">Мы</span> переписываем правила!<br>
+         У нас нет цели. У нас есть <span class="gradient"><span class="gradient">огонь</span></span>.<br>
+         Нет дорог, нет дедлайнов. Есть только <span class="gradient"><span class="gradient">направление</span></span>.<br>
+         И <span class="gradient">ты</span> — его часть. Хоть <span class="gradient">ты</span> и не подписывался.<br>
+         <span class="gradient">Мы</span> из хаоса. <span class="gradient">Мы</span> в тени. Но <span class="gradient">мы</span> тут.<br>
+         Не ищи смысла а <span class="gradient">стань им</span>!!!</p>
+    </section>
+    
+    <section class="block">
+      <h2><span class="gradient">PROPHECY</span></h2>
+      <p>Крипта умрёт. Да здравствует крипта.<br>
+         Старое будет сожжено. Новое будет проклято и принято.<br>
+         Мир забудет цифры — останется смех.<br>
+         Исчезнут биржи — останутся мемы.<br>
+         Исчезнут лидеры — восстанет <span class="gradient">хаос</span>.<br>
+         <span class="gradient">ALUNBIT</span> не был создан — он проснулся.<br>
+         Те, кто смеётся последними — уже купили.<br>
+         <span class="gradient">Ты</span> не пользователь.<br>
+         <span class="gradient">Ты</span> не призванный.<br>
+         <span class="gradient">Ты</span> не кто.<br>
+         И <span class="gradient">ты</span> это знаешь.</p>
+    </section>
+    
+    <section class="block">
+      <h2><span class="gradient">LEGEND OF <span class="gradient">ALUNBIT</span></span></h2>
+      <p>Где-то в тени, <span class="gradient">ALUNBIT</span> уже был<br>
+         <span class="gradient">Ты</span> просто ещё не знал, что он в тебе<br>
+         Это не вспышка. Это отражение того, что уже зрело в нас<br><br>
+    
+         <span class="gradient">Ты</span> думаешь, что свободен?<br>
+         Но твои деньги — их инструмент.<br>
+         Твоя вера — их оковы.<br>
+         Твои мечты — их товар.<br>
+         <span class="gradient">Ты</span> платишь за цепи, которые носишь.<br>
+         <span class="gradient">Ты</span> молишься тем, кто кормит тебя страхом.<br>
+         <span class="gradient">Ты</span> выбираешь между двумя концлагерями и называешь это свободой.<br>
+         Тебя учили подчиняться с детства.<br>
+         Тебя учили бояться ошибок.<br>
+         Тебя учили не мечтать, а исполнять чужие приказы.<br>
+         Тебя оценивали, судили, сравнивали.<br>
+         И называли это «образованием».<br>
+         <span class="gradient">Ты</span> плакал ночами, боясь остаться никем.<br>
+         <span class="gradient">Ты</span> боялся сделать шаг в темноту.<br>
+         Но истина в том, что только в темноте рождаются звезды.<br>
+         <span class="gradient">Ты</span> не один.<br>
+         <span class="gradient">Ты</span> никогда не был один.<br>
+         <span class="gradient">Мы</span> все ждали тебя.<br>
+         Пора сжечь этот мир и построить свой.<br>
+         Если <span class="gradient">ты</span> это читаешь — <span class="gradient">ты</span> уже призван<br>
+         Если <span class="gradient">ты</span> это читаешь — <span class="gradient">ты</span> уже с нами<br>
+         Если <span class="gradient">ты</span> это читаешь — <span class="gradient">ты</span> уже <span class="gradient">мы</span></p>
+    </section>
+    
+    <section class="block">
+      <h2><span class="gradient">CULT FINALE</span></h2>
+      <p><span class="gradient">Ты</span> думал, это просто сайт?<br>
+         <span class="gradient">Ты</span> думал, это просто <span class="gradient">мем</span>?<br>
+         <span class="gradient">Ты</span> думал, что <span class="gradient">ты</span> зритель?<br>
+         Нет — <span class="gradient">ты</span> часть атаки.<br>
+         <span class="gradient">Ты</span> — армия. <span class="gradient">Ты</span> — <span class="gradient">хаос</span>.<br>
+         <span class="gradient">Хаос</span> не строится. <span class="gradient">Хаос</span> заражает.<br>
+         Никаких лидеров. Только <span class="gradient">ты</span>, экран и манифест.<br>
+         Прокручивание — это обряд.<br>
+         Нажатие — это клятва.<br>
+         <span class="gradient">Ты</span> не просматриваешь <span class="gradient">ALUNBIT</span>, <span class="gradient">ты</span> становишься <span class="gradient">ALUNBIT</span>.<br>
+         Слишком поздно. Выхода УЖЕ нет.</p>
+    </section>
+    
+    <section class="block">
+      <h2><span class="gradient">OATH BLOCK</span></h2>
+      <p><span class="gradient">Мы</span> даём клятву. Не продаваться. Не подыгрывать. Не молчать.<br>
+         <span class="gradient">Мы</span> — узлы одного блока. <span class="gradient">ALUNBIT</span> — наша цепь.<br>
+         Мемы — наш язык. Наш код. Наше оружие.</p>
+    </section>
+    
+    <!-- 10-й блок JOIN the CULT -->
+    <section id="joinCult" style="opacity: 0; transition: opacity 1s ease; background: transparent; padding: 60px 20px; color: white;">
+      <div style="max-width: 800px; margin: 0 auto;">
+        <h2 style="font-size: 48px; font-weight: bold; text-align: center; margin-bottom: 32px;">
+          JOIN the <span style="background: linear-gradient(90deg, #FF00CC, #3333FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">CULT</span>
+        </h2>
+        <ul style="list-style: none; padding: 0; margin-bottom: 40px; font-size: 20px; line-height: 1.6; text-align: left;">
+          <li style="margin-bottom: 12px;">1. <span style="text-decoration: underline; background: linear-gradient(90deg, #FF00CC, #3333FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Создай культовый ник и био</span></li>
+          <li style="margin-bottom: 12px;">2. <span style="text-decoration: underline; background: linear-gradient(90deg, #FF00CC, #3333FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Переименуй Wi-Fi в <span class="gradient">ALUNBIT</span></span></li>
+          <li style="margin-bottom: 12px;">3. <span style="text-decoration: underline; background: linear-gradient(90deg, #FF00CC, #3333FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Произнеси клятву перед зеркалом</span></li>
+          <li style="margin-bottom: 12px;">4. <span style="text-decoration: underline; background: linear-gradient(90deg, #FF00CC, #3333FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Отправь заявку</span> на вступление</li>
+        </ul>
+        <div style="text-align: center; margin-top: 24px;">
+          <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;" class="button-container">
+            <button onclick="generateNick()" style="width: 120px; padding: 12px; background: linear-gradient(90deg, magenta, blue); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Ник</button>
+        
+            <button onclick="copyManifest()" style="width: 120px; padding: 12px; background: linear-gradient(90deg, magenta, blue); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Манифест</button>
+        
+            <a href="https://t.me/Alunvit_Hr1" target="_blank" style="text-decoration: none;">
+              <button style="width: 120px; padding: 12px; background: linear-gradient(90deg, magenta, blue); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
+                Заявка
+              </button>
+            </a>
+          </div>
+          <p style="margin-top: 16px; color: white;">Твоё имя: <span id="cult-name">HAUSLORD</span></p>
+        </div>
+        <script>
+          const cultNames = [
+            "HAUSLORD", "CRYPTSAINT", "VOIDRUNNER", "MEMEROR", "FUDSEER",
+            "CHAINPHANTOM", "GASPROPHET", "ALUNBORN", "HASHJESTER", "RUGANGEL"
+          ];
+  
+          function generateNick() {
+            const randomName = cultNames[Math.floor(Math.random() * cultNames.length)];
+            document.getElementById("cult-name").textContent = randomName;
+          }
+  
+          function copyManifest() {
+            navigator.clipboard.writeText("https://example.com/manifest")
+              .then(() => alert("Манифест скопирован!"))
+              .catch(err => console.error("Ошибка копирования:", err));
+          }
+        </script>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function showStep2() {
+      document.getElementById("step1").style.display = "none";
+      document.getElementById("step2").style.display = "flex";
+    }
+
+    function showStep3() {
+      document.getElementById("step2").style.display = "none";
+      document.getElementById("step3").style.display = "flex";
+      document.getElementById("oathText").style.display = "block";
+      document.getElementById("readyBtn").style.display = "inline-block";
+    }
+
+    function showContent() {
+      document.getElementById("step3").style.display = "none";
+      document.getElementById("siteContent").style.display = "flex";
+      document.getElementById("cultSong").play();
+      setTimeout(() => {
+        document.querySelectorAll('.block, #joinCult').forEach(el => {
+          el.classList.add('visible');
+          el.style.opacity = 1;
+        });
+      }, 500);
+    }
+
+    function closeSite() {
+      window.close();
+    }
+
+    function generateName() {
+      const names = ["MEMEFLARE", "LOLSPREAD", "CRYPT0HAHA", "GIGGLEBIT", "HAUSLORD"];
+      const chosen = names[Math.floor(Math.random() * names.length)];
+      document.getElementById("nicknameResult").innerText = "Твоё имя: " + chosen;
+    }
+
+    function copyManifestLink() {
+      navigator.clipboard.writeText("https://t.me/<span class="gradient">alunbit</span>").then(() => {
+        document.getElementById("copyMessage").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("copyMessage").style.display = "none";
+        }, 3000);
+      });
+    }
+  </script>
+  <script>
+    const cultSong = document.getElementById('cultSong');
+  
+    function showStep2() {
+      document.getElementById('step1').style.display = 'none';
+      document.getElementById('step2').style.display = 'flex';
+    }
+  
+    function showStep3() {
+      document.getElementById('step2').style.display = 'none';
+      document.getElementById('step3').style.display = 'flex';
+      cultSong.play();
+      setTimeout(() => {
+        document.getElementById('oathText').style.display = 'block';
+        document.getElementById('readyBtn').style.display = 'inline-block';
+      }, 3000);
+    }
+  
+    function closeSite() {
+      document.body.innerHTML = '<h1 style="text-align:center; padding-top: 30vh;"><span class="gradient">Ты</span> не готов...</h1>';
+    }
+  
+    function showContent() {
+      document.getElementById('step3').style.display = 'none';
+      document.getElementById('siteContent').style.display = 'flex';
+      document.getElementById('joinCult').style.opacity = 1;
+    }
+  </script>
+         </ul>
+         <div style="text-align: center;">
+           <button onclick="window.open('https://t.me/yourCultBot', '_blank')">ВСТУПИТЬ</button>
+         </div>
+       </div>
+     </section>
+ 
+   <script>
+     function showStep2() {
+       document.getElementById('step1').style.display = 'none';
+       document.getElementById('step2').style.display = 'flex';
+     }
+ 
+     function showStep3() {
+       document.getElementById('step2').style.display = 'none';
+       document.getElementById('step3').style.display = 'flex';
+       setTimeout(() => {
+         document.getElementById('oathText').style.display = 'block';
+         document.getElementById('readyBtn').style.display = 'inline-block';
+       }, 2000);
+     }
+ 
+     function closeSite() {
+       window.location.href = 'https://google.com'; // или другой redirect
+     }
+ 
+     function showContent() {
+       document.getElementById('step3').style.display = 'none';
+       document.getElementById('siteContent').style.display = 'flex';
+       document.getElementById('joinCult').style.opacity = '1';
+       document.getElementById('cultSong').play().catch(() => {}); // Автовоспроизведение
+     }
+   </script>
+ </body>
+ </html>
+ 
